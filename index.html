@@ -1,40 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Bad Girlfriend</title>
+  <meta charset="UTF-8" />
+  <title>Дюймовочка</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #ffe4ec;
       font-family: 'Arial', sans-serif;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      background: url('https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif') no-repeat center center/cover;
-      color: white;
+      align-items: center;
       text-align: center;
+      color: #333;
     }
     h1 {
-      font-size: 3em;
-      text-shadow: 2px 2px 8px black;
+      font-size: 2em;
+      margin-bottom: 0.5em;
     }
-    .player {
-      margin-top: 20px;
+    #counter {
+      font-size: 3em;
+      font-weight: bold;
+      color: #e91e63;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Bad Girlfriend</h1>
-    <div class="player">
-      <iframe style="border-radius:12px" 
-        src="https://open.spotify.com/embed/track/1lCRw5FEZ1gPDNPzy1K4zW" 
-        width="300" height="80" frameBorder="0" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
+  <h1>З МОМЕНТУ "вона напевно як дюймовочка" МИНУЛО:</h1>
+  <div id="counter">0 місяців</div>
+  <img src="aa23a9a0-a572-4741-8478-ebb53bd2653e.png" alt="дюймовочка">
+
+  <script>
+    function calculateMonthsSince(dateStr) {
+      const startDate = new Date(dateStr);
+      const now = new Date();
+      const years = now.getFullYear() - startDate.getFullYear();
+      const months = now.getMonth() - startDate.getMonth();
+      const totalMonths = years * 12 + months;
+      return totalMonths;
+    }
+
+    const monthsPassed = calculateMonthsSince("2018-09-01");
+    document.getElementById("counter").textContent = `${monthsPassed} місяців`;
+  </script>
 </body>
 </html>
