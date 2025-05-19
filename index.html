@@ -40,18 +40,38 @@
   <div id="counter">0 місяців</div>
   <img src="aa23a9a0-a572-4741-8478-ebb53bd2653e.png" alt="дюймовочка">
 
-  <script>
-    function calculateMonthsSince(dateStr) {
-      const startDate = new Date(dateStr);
+    <script>
+    function updateCounter() {
+      const startDate = new Date('2018-09-01T00:00:00');
       const now = new Date();
-      const years = now.getFullYear() - startDate.getFullYear();
-      const months = now.getMonth() - startDate.getMonth();
-      const totalMonths = years * 12 + months;
-      return totalMonths;
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+      let hours = now.getHours() - startDate.getHours();
+
+      if (hours < 0) {
+        hours += 24;
+        days -= 1;
+      }
+
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months -= 1;
+      }
+
+      if (months < 0) {
+        months += 12;
+        years -= 1;
+      }
+
+      document.getElementById('counter').innerText =
+        `${years} років, ${months} місяців, ${days} днів, ${hours} годин`;
     }
 
-    const monthsPassed = calculateMonthsSince("2018-09-01");
-    document.getElementById("counter").textContent = `${monthsPassed} місяців`;
+    updateCounter();
+    setInterval(updateCounter, 3600000); // updates every hour
   </script>
 </body>
 </html>
